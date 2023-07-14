@@ -21,8 +21,7 @@ class FruitController extends Controller
     public function store(Request $request)
     {
 
-        $validated = $request->validate(['user_id'=>'required','name'=>'required','price'=>'required','expires_at'=>'required|date|after:tomorrow']);
-        
+        $validated = $request->validate(['user_id' => 'required', 'name' => 'required', 'price' => 'required', 'expires_at' => 'required|date|after:tomorrow']);
         $new_user = Fruit::create($validated);
         return response()->json($new_user);
     }
@@ -33,8 +32,7 @@ class FruitController extends Controller
     public function show(string $id)
     {
         $user = Fruit::find($id);
-        if(!$user)
-        {
+        if (!$user) {
             $user = "User Not found";
         }
         return response()->json($user);
@@ -46,15 +44,13 @@ class FruitController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $validated = $request->validate(['price'=>'required']);
+        $validated = $request->validate(['price' => 'required']);
         $user = Fruit::find($id);
-        if(!$user)
-        {
+        if (!$user) {
             return response()->json("user not found");
         }
-        $user->price= $request->price;
+        $user->price = $request->price;
         return response()->json("updated");
-
     }
     /**
      * Remove the specified resource from storage.
