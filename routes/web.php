@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubTaskController;
 use App\Http\Controllers\ProjectController;
@@ -27,22 +28,22 @@ Route::get('/', function () {
 // Route::get('/user/subtask/{user}', [UserController::class, 'showSubTask']);
 
 
-Route::get('/project/allprojects', [ProjectController::class, 'showAll']);
-Route::get('/project/user/{project}', [ProjectController::class, 'showUser']);
-Route::get('/project/task/{project}', [ProjectController::class, 'showTask']);
-Route::get('/project/subtask/{project}', [ProjectController::class, 'showSubTask']);
+// Route::get('/project/allprojects', [ProjectController::class, 'showAll']);
+// Route::get('/project/user/{project}', [ProjectController::class, 'showUser']);
+// Route::get('/project/task/{project}', [ProjectController::class, 'showTask']);
+// Route::get('/project/subtask/{project}', [ProjectController::class, 'showSubTask']);
 
 
-Route::get('/task/alltasks', [TaskController::class, 'showAll']);
-Route::get('/task/user/{task}', [TaskController::class, 'showUser']);
-Route::get('/task/project/{task}', [TaskController::class, 'showProject']);
-Route::get('/task/subtask/{task}', [TaskController::class, 'showSubTask']);
+// Route::get('/task/alltasks', [TaskController::class, 'showAll']);
+// Route::get('/task/user/{task}', [TaskController::class, 'showUser']);
+// Route::get('/task/project/{task}', [TaskController::class, 'showProject']);
+// Route::get('/task/subtask/{task}', [TaskController::class, 'showSubTask']);
 
 
-Route::get('/subtask/allsubtasks', [SubTaskController::class, 'showAll']);
-Route::get('/subtask/user/{subtask}', [SubTaskController::class, 'showUser']);
-Route::get('/subtask/project/{subtask}', [SubTaskController::class, 'showProject']);
-Route::get('/subtask/task/{subtask}', [SubTaskController::class, 'showTask']);
+// Route::get('/subtask/allsubtasks', [SubTaskController::class, 'showAll']);
+// Route::get('/subtask/user/{subtask}', [SubTaskController::class, 'showUser']);
+// Route::get('/subtask/project/{subtask}', [SubTaskController::class, 'showProject']);
+// Route::get('/subtask/task/{subtask}', [SubTaskController::class, 'showTask']);
 
 
 // Route::get('/projects/showtask/{project}', [ProjectController::class, 'showTask']);
@@ -51,5 +52,4 @@ Route::get('/subtask/task/{subtask}', [SubTaskController::class, 'showTask']);
 // Route::get('/subtasks/{task}', [SubTaskController::class, 'showsubtasks']);
 
 
-
-
+Route::get('/ip', [Controller::class, 'test']);

@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('projects', 'projects.tasks', 'projects.tasks.subtasks')->get();
         return response()->json($users);
     }
 

@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectUser>
  */
-class ProjectFactory extends Factory
+class ProjectUserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +18,8 @@ class ProjectFactory extends Factory
     {
         return [
             //
-            'project_name' => Str::random(10)
+            'project_id' => rand(1, 10),
+            'user_id' => rand(1, 10)
         ];
     }
 }
