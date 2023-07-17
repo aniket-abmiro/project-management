@@ -69,3 +69,6 @@ Route::get('/projects/{project}/tasks/subtasks', ProjectTasksSubtasksController:
 
 //task subtasks
 Route::get('/tasks/{task}/subtasks', TasksSubtasksController::class);
+
+//sign in and sign up api with jwt
+//
