@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\ProjectUser;
+use Illuminate\Support\Facades\Gate;
 
 class UserProjectAssignmentController extends Controller
 {
@@ -15,10 +16,15 @@ class UserProjectAssignmentController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        //autherization 
+        $response = Gate::inspect('assign-project');
+        if (!$response->allowed()) {
+            return response()->json($response->message());
+        }
+
         $validated = $request->validate([
             'project_id' => ['required', 'numeric', function ($attribute, $value, $fail) {
-                $project = Project::find($value);
+                $project = Project::findOrFail($value);
                 if (!$project) {
                     $fail("Invalid project_id");
                 }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Permission>
  */
-class TaskUserFactory extends Factory
+class PermissionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +16,9 @@ class TaskUserFactory extends Factory
      */
     public function definition(): array
     {
+        $permission_name = fake()->randomElement(['assign-project', 'assign-task']);
         return [
-            //
-            'task_id' => rand(1, 10),
-            'user_id' => rand(1, 5)
+            'name' => $permission_name
         ];
     }
 }

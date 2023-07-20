@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Role>
  */
-class TaskUserFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +16,9 @@ class TaskUserFactory extends Factory
      */
     public function definition(): array
     {
+        $roleName = fake()->randomElement(['Lead', 'Senior', 'Junior']);
         return [
-            //
-            'task_id' => rand(1, 10),
-            'user_id' => rand(1, 5)
+            'name' => $roleName,
         ];
     }
 }

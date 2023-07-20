@@ -19,7 +19,7 @@ class ProjectUserFactory extends Factory
         return [
             //
             'project_id' => rand(1, 10),
-            'user_id' => rand(1, 10)
+            'user_id' => rand(1, 5)
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\SubTask;
+
 use Illuminate\Database\Seeder;
 
 
@@ -21,7 +21,11 @@ class DatabaseSeeder extends Seeder
             TaskSeeder::class,
             SubTaskSeeder::class,
             ProjectUserSeeder::class,
-            TaskUserSeeder::class
+            TaskUserSeeder::class,
+            RoleSeeder::class,
+            RoleUserSeeder::class,
+            PermissionSeeder::class,
+            RolePermissionSeeder::class
         ]);
 
 

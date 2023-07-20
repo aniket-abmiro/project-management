@@ -40,13 +40,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('/fruits', FruitController::class);
     Route::apiResource('/users', UserController::class);
-    Route::apiResource('/projects', ProjectController::class);
+    Route::apiResource('/project', ProjectController::class);
     Route::apiResource('/tasks', TaskController::class);
     Route::apiResource('/subtasks', SubTaskController::class);
 
-    //assign project and task
+
+    //assign project and task 
     Route::post('assign/project', UserProjectAssignmentController::class);
     Route::post('assign/task', UserTaskAssignmentController::class);
+
+
 
     //user projects
     Route::get('/users/{user}/projects', UserProjectsController::class);
@@ -78,5 +81,22 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
+
+
+//auth,assign middleware =>
+// Route::middleware('auth:api', 'assignPermissionCheck')->group(function () {
+
+// });
+
+//login and registration
 Route::post('auth/login', [LoginController::class, 'login'])->middleware('denyIfAuthenticated');
 Route::post('auth/register', RegisterController::class)->middleware('denyIfAuthenticated');
+
+
+
+
+
+
+
+
+//gets and polici
