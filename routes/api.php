@@ -38,10 +38,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('/fruits', FruitController::class);
     Route::apiResource('/users', UserController::class);
     Route::apiResource('/project', ProjectController::class);
-    Route::apiResource('/tasks', TaskController::class);
+    Route::apiResource('/task', TaskController::class);
     Route::apiResource('/subtasks', SubTaskController::class);
 
 
@@ -51,42 +50,12 @@ Route::middleware('auth:api')->group(function () {
 
 
 
-    //user projects
-    Route::get('/users/{user}/projects', UserProjectsController::class);
-
-    //user tasks
-    Route::get('/users/{user}/tasks', UserTasksController::class);
-
-    //user subtasks
-    Route::get('/users/{user}/subtasks', UserSubtasksController::class);
-
-    //user projects and tasks
-    Route::get('/users/{user}/projects/tasks', UserProjectsTasksController::class);
-
-    //user projects, tasks, and subtasks
-    Route::get('/users/{user}/projects/tasks/subtasks', UserProjectsTasksSubtasksController::class);
-
-    //project tasks
-    Route::get('/projects/{project}/tasks', ProjectTasksController::class);
-
-    //project tasks and subtasks
-    Route::get('/projects/{project}/tasks/subtasks', ProjectTasksSubtasksController::class);
-
-    //task subtasks
-    Route::get('/tasks/{task}/subtasks', TasksSubtasksController::class);
-
     Route::post('auth/logout', [LogoutController::class, 'logout']);
     Route::post('auth/refresh', [LoginController::class, 'refresh']);
     Route::post('auth/me', [LoginController::class, 'me']);
 });
 
 
-
-
-//auth,assign middleware =>
-// Route::middleware('auth:api', 'assignPermissionCheck')->group(function () {
-
-// });
 
 //login and registration
 Route::post('auth/login', [LoginController::class, 'login'])->middleware('denyIfAuthenticated');
@@ -96,7 +65,26 @@ Route::post('auth/register', RegisterController::class)->middleware('denyIfAuthe
 
 
 
+//user projects
+// Route::get('/users/{user}/projects', UserProjectsController::class);
 
+//user tasks
+// Route::get('/users/{user}/tasks', UserTasksController::class);
 
+// //user subtasks
+// Route::get('/users/{user}/subtasks', UserSubtasksController::class);
 
-//gets and polici
+// //user projects and tasks
+// Route::get('/users/{user}/projects/tasks', UserProjectsTasksController::class);
+
+// //user projects, tasks, and subtasks
+// Route::get('/users/{user}/projects/tasks/subtasks', UserProjectsTasksSubtasksController::class);
+
+// //project tasks
+// Route::get('/projects/{project}/tasks', ProjectTasksController::class);
+
+// //project tasks and subtasks
+// Route::get('/projects/{project}/tasks/subtasks', ProjectTasksSubtasksController::class);
+
+// //task subtasks
+// Route::get('/tasks/{task}/subtasks', TasksSubtasksController::class);
