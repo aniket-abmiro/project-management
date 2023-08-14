@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
-
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FruitController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTasksController;
@@ -13,15 +12,12 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TasksSubtasksController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProjectAssignmentController;
-use App\Http\Controllers\UserTaskAssignmentController;
-use App\Http\Controllers\UserSubtasksController;
-use App\Http\Controllers\UserTasksController;
 use App\Http\Controllers\UserProjectsController;
 use App\Http\Controllers\UserProjectsTasksController;
 use App\Http\Controllers\UserProjectsTasksSubtasksController;
-
-
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserSubtasksController;
+use App\Http\Controllers\UserTaskAssignmentController;
+use App\Http\Controllers\UserTasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,35 +31,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::middleware('auth:api')->group(function () {
+    Route::apiResource('/fruits', FruitController::class);
     Route::apiResource('/users', UserController::class);
-    Route::apiResource('/project', ProjectController::class);
-    Route::apiResource('/task', TaskController::class);
+    Route::apiResource('/projects', ProjectController::class);
+    Route::apiResource('/tasks', TaskController::class);
     Route::apiResource('/subtasks', SubTaskController::class);
 
-
-    //assign project and task 
+    //assign project and task
+    //'admin' role
     Route::post('assign/project', UserProjectAssignmentController::class);
     Route::post('assign/task', UserTaskAssignmentController::class);
-
-
 
     Route::post('auth/logout', [LogoutController::class, 'logout']);
     Route::post('auth/refresh', [LoginController::class, 'refresh']);
     Route::post('auth/me', [LoginController::class, 'me']);
 });
 
-
-
 //login and registration
 Route::post('auth/login', [LoginController::class, 'login'])->middleware('denyIfAuthenticated');
 Route::post('auth/register', RegisterController::class)->middleware('denyIfAuthenticated');
-
-
-
-
 
 //user projects
 // Route::get('/users/{user}/projects', UserProjectsController::class);
@@ -88,3 +75,7 @@ Route::post('auth/register', RegisterController::class)->middleware('denyIfAuthe
 
 // //task subtasks
 // Route::get('/tasks/{task}/subtasks', TasksSubtasksController::class);
+
+//observer and send email using job and queue
+
+//tools =>laravel pint,

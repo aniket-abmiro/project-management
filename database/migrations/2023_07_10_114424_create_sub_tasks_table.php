@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('sub_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignid('task_id');
-            $table->string('sub_task');
+            $table->string('name');
             $table->timestamps();
         });
     }

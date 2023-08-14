@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -14,6 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('projects', 'projects.tasks', 'projects.tasks.subtasks')->get();
+
         return response()->json($users);
     }
 
@@ -38,6 +39,7 @@ class UserController extends Controller
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
         $user->save();
+
         return response()->json($validated);
     }
 
@@ -47,6 +49,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::findOrFail($id);
+
         return response()->json($user);
     }
 
@@ -70,6 +73,7 @@ class UserController extends Controller
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
         $user->save();
+
         return response()->json($user);
     }
 
@@ -81,10 +85,9 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
         $user = $user->delete();
+
         return response()->json($user);
     }
 }
-
-
 
 //project se task se subtask of user

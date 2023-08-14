@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
 use App\Models\RolePermission;
+use Illuminate\Database\Seeder;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -14,6 +12,10 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        $newRolePermission = new RolePermission();
+        $newRolePermission->role_id = 1;
+        $newRolePermission->permission_id = 1;
+        $newRolePermission->save();
         RolePermission::factory(10)->create();
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserSubtasksController extends Controller
 {
@@ -14,6 +14,7 @@ class UserSubtasksController extends Controller
     {
         //
         $subtasks = $user->subtasks;
+
         return response()->json($subtasks);
     }
 }

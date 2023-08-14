@@ -19,7 +19,7 @@ class ProjectFactory extends Factory
     {
         return [
             //
-            'project_name' => Str::random(10)
+            'project_name' => Str::random(10),
         ];
     }
 }

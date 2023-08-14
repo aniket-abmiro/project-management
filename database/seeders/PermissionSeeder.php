@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -13,7 +12,10 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $newPermission = new Permission();
+        $newPermission->name = 'assign-role';
+        $newPermission->save();
+
         Permission::factory(10)->create();
     }
 }

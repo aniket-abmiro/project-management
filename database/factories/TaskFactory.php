@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
@@ -21,7 +21,7 @@ class TaskFactory extends Factory
         return [
             //
             'project_id' => Project::factory(),
-            'task_name' => Str::random(10)
+            'task_name' => Str::random(10),
         ];
     }
 }

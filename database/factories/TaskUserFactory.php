@@ -19,7 +19,7 @@ class TaskUserFactory extends Factory
         return [
             //
             'task_id' => rand(1, 10),
-            'user_id' => rand(1, 5)
+            'user_id' => rand(2, 5),
         ];
     }
 }

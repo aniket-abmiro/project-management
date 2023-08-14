@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Notifications\UserLoggedIn;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
 
 class LoginController extends Controller
 {
@@ -28,13 +31,17 @@ class LoginController extends Controller
         }
 
         $user = Auth::user();
+
+
+
+
         return response()->json([
             'status' => 'success',
             'user' => $user,
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',
-            ]
+            ],
         ]);
     }
 
@@ -51,7 +58,7 @@ class LoginController extends Controller
             'authorisation' => [
                 'token' => Auth::refresh(),
                 'type' => 'bearer',
-            ]
+            ],
         ]);
     }
 }

@@ -2,100 +2,100 @@
 
 namespace App\Policies;
 
+use App\Models\Task;
 use App\Models\User;
-
 
 class TaskPolicy
 {
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
-    {
-        //
-    }
     public function findRole($user)
     {
-        return $user->roles()->find(2);
+        return $user->roles()->find(10);
     }
 
-    public function before(?User $user): bool|null
+    public function before(?User $user): ?bool
     {
-        $role_name = $this->findRole($user)->name;
-
-        if ($role_name == 'Lead' || $role_name == 'Senior') {
+        $roleName = $this->findRole($user)->name;
+        if ($roleName == 'Lead' || $roleName == 'Senior') {
             return true;
         }
 
-        return null;
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(User $user): bool
+    {
+        $role = $this->findRole($user);
+        $permissionName = 'view-task';
+        $isUserHavePermission = $role->permissions()->where('name', $permissionName)->exists();
+
+        return $isUserHavePermission;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, Task $task): bool
+    {
+        return $this->viewAny($user);
+    }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
+    {
+        $role = $this->findRole($user);
+        $permissionName = 'create-task';
+        $isUserHavePermission = $role->permissions()->where('name', $permissionName)->exists();
+
+        return $isUserHavePermission;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Task $task): bool
+    {
+        $role = $this->findRole($user);
+        $permissionName = 'update-task';
+        $isUserHavePermission = $role->permissions()->where('name', $permissionName)->exists();
+
+        return $isUserHavePermission;
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, Task $task): bool
+    {
+        $role = $this->findRole($user);
+        $permissionName = 'delete-task';
+        $isUserHavePermission = $role->permissions()->where('name', $permissionName)->exists();
+
+        return $isUserHavePermission;
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(User $user, Task $task): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(User $user, Task $task): bool
+    {
+        return false;
     }
 
     public function assignTask(?User $user): bool
     {
         return false;
-        // $role = $this->findRole($user);
-        // $role_id = $role->id;
-        // $role_name = $role->name;
-        // $permission_name = 'assign-' . '' . last(request()->segments());
-        // //$role = Role::findOrFail($role_id);
-
-        // // dd($role);
-        // $isUserHavePermission = $role->permissions()->where('name', $permission_name)->get();
-
-        // if ($isUserHavePermission->count() == 0) {
-        //     return Response::deny('You do not have permission');
-        // }
-        // return true;
-    }
-
-    public function  viewTask(?User $user)
-    {
-        $role = $this->findRole($user);
-        $role_id = $role->id;
-        $role_name = $role->name;
-        $permission_name = 'view-task';
-        //$role = Role::findOrFail($role_id);
-
-        // dd($role);
-        $isUserHavePermission = $role->permissions()->where('name', $permission_name)->exists();
-        return $isUserHavePermission;
-    }
-
-    public function createTask(?User $user)
-    {
-        $role = $this->findRole($user);
-        $role_id = $role->id;
-        $role_name = $role->name;
-        $permission_name = 'create-task';
-        //$role = Role::findOrFail($role_id);
-
-        // dd($role);
-        $isUserHavePermission = $role->permissions()->where('name', $permission_name)->exists();
-        return $isUserHavePermission;
-    }
-    public function  updateTask(?User $user)
-    {
-        $role = $this->findRole($user);
-        $role_id = $role->id;
-        $role_name = $role->name;
-        $permission_name = 'update-task';
-        //$role = Role::findOrFail($role_id);
-
-
-        $isUserHavePermission = $role->permissions()->where('name', $permission_name)->exists();
-        return $isUserHavePermission;
-    }
-
-    public function  deleteTask(?User $user)
-    {
-        $role = $this->findRole($user);
-        $role_id = $role->id;
-        $role_name = $role->name;
-        $permission_name = 'delete-task';
-        //$role = Role::findOrFail($role_id);
-
-
-        $isUserHavePermission = $role->permissions()->where('name', $permission_name)->exists();
-        return $isUserHavePermission;
     }
 }

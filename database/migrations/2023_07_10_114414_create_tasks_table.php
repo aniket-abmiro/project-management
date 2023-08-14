@@ -9,15 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-        // Tasks
-        // Id,project_id, user_id,task_name, created_at,updated_at
+    // Tasks
+    // Id,project_id, user_id,task_name, created_at,updated_at
 
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id');
-            $table->string('task_name');
+            $table->string('name');
             $table->timestamps();
         });
     }

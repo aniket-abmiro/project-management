@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\SubTask;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class SubTaskController extends Controller
 {
@@ -15,6 +15,7 @@ class SubTaskController extends Controller
     {
         //
         $subtasks = SubTask::all();
+
         return response()->json($subtasks);
     }
 
@@ -26,17 +27,18 @@ class SubTaskController extends Controller
         $validated = $request->validate([
             'task_id' => ['required', 'numeric', function ($attribute, $value, $fail) {
                 $task = Task::find($value);
-                if (!$task) {
+                if (! $task) {
                     $fail('Invalid task_id.');
                 }
             }],
-            'subtask_name' => 'required'
+            'subtask_name' => 'required',
         ]);
 
         $subtask = new SubTask();
         $subtask->task_id = $validated['task_id'];
         $subtask->subtask_name = $validated['subtask_name'];
         $subtask->save();
+
         return response()->json($subtask);
     }
 
@@ -47,6 +49,7 @@ class SubTaskController extends Controller
     {
         //
         $subtask = SubTask::findOrFail($id);
+
         return response()->json($subtask);
     }
 
@@ -59,20 +62,20 @@ class SubTaskController extends Controller
         $validated = $request->validate([
             'task_id' => ['required', 'numeric', function ($attribute, $value, $fail) {
                 $task = Task::find($value);
-                if (!$task) {
+                if (! $task) {
                     $fail('Invalid task_id.');
                 }
             }],
-            'subtask_name' => 'required'
+            'subtask_name' => 'required',
         ]);
 
         $subtask = SubTask::findOrFail($id);
         $subtask->task_id = $validated['task_id'];
         $subtask->subtask_name = $validated['subtask_name'];
         $subtask->save();
+
         return response()->json($subtask);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -80,8 +83,9 @@ class SubTaskController extends Controller
     public function destroy(string $id)
     {
         //
-        $subtask  = SubTask::findOrFail($id);
+        $subtask = SubTask::findOrFail($id);
         $subtask->delete();
+
         return response()->json($subtask);
     }
 }

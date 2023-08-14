@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TasksSubtasksController extends Controller
 {
@@ -13,6 +13,7 @@ class TasksSubtasksController extends Controller
     public function __invoke(Request $request, Task $task)
     {
         $task_subtasks = Task::with('subtasks')->findOrFail($task->id);
+
         return response()->json($task_subtasks);
     }
 }

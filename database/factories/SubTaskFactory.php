@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Task;
 use Illuminate\Support\Str;
 
 /**
@@ -21,7 +20,7 @@ class SubTaskFactory extends Factory
         return [
             //
             'task_id' => rand(1, 10),
-            'sub_task' => Str::random(10)
+            'sub_task' => Str::random(10),
         ];
     }
 }

@@ -3,12 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -47,16 +46,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_user');
+        return $this->belongsToMany(Project::class);
     }
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'task_user');
+        return $this->belongsToMany(Task::class);
     }
+
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_users');
+        return $this->belongsToMany(Role::class);
     }
 
     public function subTasks()
@@ -68,6 +68,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];

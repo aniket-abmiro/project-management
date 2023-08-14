@@ -18,6 +18,7 @@ class DenyIfAuthenticated
         if (Auth()->check()) { //valid tokern exists
             return response()->json(['message' => 'Access denied'], 403);
         }
+
         return $next($request);
     }
 }

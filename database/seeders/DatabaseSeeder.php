@@ -4,9 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-
 use Illuminate\Database\Seeder;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,14 +22,10 @@ class DatabaseSeeder extends Seeder
             TaskUserSeeder::class,
             RoleSeeder::class,
             RoleUserSeeder::class,
+            RolePermissionSeeder::class,
             PermissionSeeder::class,
-            RolePermissionSeeder::class
+
         ]);
-
-
-
-
-
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

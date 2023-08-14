@@ -16,9 +16,13 @@ class PermissionFactory extends Factory
      */
     public function definition(): array
     {
-        $permission_name = fake()->randomElement(['assign-project', 'assign-task']);
+        $permissionName = fake()->randomElement([
+            'assign-project', 'assign-task', 'view-project', 'delete-project',
+            'create-project', 'update-project', 'view-task', 'create-task', 'update-task', 'delete-task',
+        ]);
+
         return [
-            'name' => $permission_name
+            'name' => $permissionName,
         ];
     }
 }

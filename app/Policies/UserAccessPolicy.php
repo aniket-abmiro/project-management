@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Task;
+use App\Models\User;
 
 class UserAccessPolicy
 {
@@ -15,42 +15,53 @@ class UserAccessPolicy
         //
 
     }
+
     public function findRole($user)
     {
-        return $user->roles()->find(2);
+        return $user->roles()->find(10);
     }
 
-    public function before(?User $user): bool|null
+    public function before(?User $user): ?bool
     {
         $role_name = $this->findRole($user)->name;
         if ($role_name == 'Lead') {
             return true;
         }
-        return null;
+
+        return false;
     }
+
     public function hasProjectAccess(User $user, $projectId = null)
     {
-
-        if ($this->before($user)) return true;
-
-        if ($projectId == null) return false;
+        if ($this->before($user)) {
+            return true;
+        }
+        if ($projectId == null) {
+            return false;
+        }
         $isUserHaveAccessToProject = $user->projects()->where('projects.id', $projectId)->exists();
-        // dd($isUserHaveAccessToProject);
+
         return $isUserHaveAccessToProject;
     }
+
     public function hasTaskAccess(User $user, $taskId = null)
     {
-        if ($this->before($user)) return true;
+        if ($this->before($user)) {
+            return true;
+        }
         $task = Task::findOrFail($taskId);
-        $projectId = $task->id;
+        $projectId = $task->project_id;
 
-        if (!$this->hasProjectAccess($user, $projectId)) return false;
-        $role_name = $this->findRole($user)->name;
-        if ($role_name == 'Senior') {
+        if (! $this->hasProjectAccess($user, $projectId)) {
+            return false;
+        }
+        $roleName = $this->findRole($user)->name;
+        if ($roleName == 'Senior') {
             return true;
         }
 
         $isUserHaveAccessToTask = $user->tasks()->where('tasks.id', $taskId)->exists();
+
         return $isUserHaveAccessToTask;
     }
 }

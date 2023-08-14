@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\SubTask;
+use Illuminate\Database\Seeder;
 
 class SubTaskSeeder extends Seeder
 {

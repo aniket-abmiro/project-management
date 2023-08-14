@@ -17,8 +17,8 @@ class RolePermissionFactory extends Factory
     public function definition(): array
     {
         return [
-            'permission_id' => rand(1, 10),
-            'role_id' => rand(1, 5)
+            'permission_id' => rand(2, 10),
+            'role_id' => rand(2, 10),
         ];
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
@@ -16,6 +16,7 @@ class Controller extends BaseController
         $var = $request->ip();
         $var = $request->getAcceptableContentTypes();
         $var = $request->collect();
+
         return response()->json($var);
     }
 }
